@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { test } from "./app";
 import "./style.css";
+import { buildInterface } from "./interface";
 
 
 const hellowWorld = (() => {
@@ -13,3 +14,4 @@ const runTest = async () => {
 }
 
 runTest();
+buildInterface();
