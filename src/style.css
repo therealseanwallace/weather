@@ -1,13 +1,95 @@
+/* RESET STYLES */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+
+* {
+  font-family: 'Merriweather', serif;
+}
+
+/* STYLES */
+
 main {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	/*height: 100vh;*/
 }
 
 .content {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+  margin-bottom: 40px;
 	/* height: 1vh; */
+}
+
+.weather-card {
+  width: 400px;
+  height: 800px;
+}
+
+.summary, .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: whitesmoke;
+  background-color: rgba(73, 73, 73, 0.727);
+}
+
+.summary {
+  margin-top: 74px;
+  padding-bottom: 42px;
+}
+
+.summary > p:first-of-type {
+  font-size: 1.8rem;
+  margin-top: 28px;
+}
+
+.temp-container, .high-container, .low-container, .feels-container {
+  display: flex;
+  gap: 10px;
+}
+
+.temp-container > p:first-of-type {
+  font-size: 3rem;
+}
+
+.temp-container > p:last-of-type {
+  font-size: 3rem;
+}
+
+.description {
+  font-size: 1.4rem;
+}
+
+.detail-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
 }

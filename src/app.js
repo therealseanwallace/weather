@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { fromUnixTime } from 'date-fns'
 import { obtainWeather } from "./obtainWeather"
-import { millisecondsToHours } from 'date-fns'
-import { formatInTimeZone, zonedTimeToUtc } from 'date-fns-tz'
-
 
 //const getsWeather = getWeather;
 
@@ -105,20 +102,21 @@ const weatherFactory = (weather) => { // Takes the object received from Open Wea
   const { country, sunrise, sunset } = weather.sys;
   const clouds = weather.clouds.all;
   const { humidity, pressure, temp }= weather.main;
+  const { id } = weather.weather[0];
+  const { dt } = weather;
   const feelsLike = convertTemp(weather['main']['feels_like']);
   const tempMin = convertTemp(weather['main']['temp_min']);
   const tempMax = convertTemp(weather['main']['temp_max']);
   const airTemp = convertTemp(weather['main']['temp']);
   //console.log('sunrise, sunset are', sunrise, sunset);
-  const sunRiseTime = convertTimes(sunrise, weather.timezone, 'sunrise');
-  const sunsetTime = convertTimes(sunset, weather.timezone, 'sunset');
+  const sunriseTime = convertTimes(sunrise, weather.timezone);
+  const sunsetTime = convertTimes(sunset, weather.timezone);
+  const readingTime = convertTimes(dt, weather.timezone);
   const { visibility } = weather;
-  const skies = weather.weather[0].main;
-  const windDeg = weather.wind.deg;
   const windConverted = convertWind(weather.wind.deg);
   const wind = [weather.wind.speed, windConverted];
   return {
-    placeName, country, clouds, humidity, pressure, airTemp, feelsLike, tempMax, tempMin, sunRiseTime, sunsetTime, visibility, skies, wind,
+    placeName, country, clouds, humidity, pressure, airTemp, feelsLike, tempMax, tempMin, sunriseTime, sunsetTime, visibility, wind, id, readingTime,
   }
 };
 
@@ -132,8 +130,9 @@ const test = async () => {
 const processInput = async (input) => {
   console.log('processing input. input is', input);
   const weather = await obtainWeather(input);
-  const weatherProcessed = await weatherFactory(weather);
+  const weatherProcessed = weatherFactory(weather);
   console.log('weatherProcessed is', weatherProcessed);
+  return (weatherProcessed);
 }
 
 /*const test = () => {

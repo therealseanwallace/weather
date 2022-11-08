@@ -1,41 +1,12 @@
-import { displayObjects } from "./displayObjects";
+/* eslint-disable prefer-destructuring */
+/* eslint-disable default-case */
+import { displayObjects, cardObjects } from "./displayObjects";
 import { processInput } from "./app";
+import { getDescription } from "./getDescription";
+import { drawCard } from "./drawCard";
+import { componentFactory } from "./componentFactory";
+import { setBackground } from "./setBackground";
 
-const componentFactory = (element) => {
-  //console.log('componentFactory active! element is', element);
-  const {
-    name, nodeType, parent, text, inputType, value, class1,
-    class2, taskID, objID, placeholder, innerHTML, prioStyle,
-  } = element;
-  const createDOMNode = () => {
-    const parentNode = document.querySelector(parent);
-    const newDOMNode = document.createElement(nodeType);
-    if (text) {
-      newDOMNode.innerHTML = text;
-    }
-    if (inputType) {
-      newDOMNode.type = inputType;
-    }
-    if (value) {
-      newDOMNode.value = value;
-    }
-    if (class1) {
-      newDOMNode.classList.add(class1);
-    }
-    if (class2) {
-      newDOMNode.classList.add(class2);
-    }
-    if (placeholder) {
-      newDOMNode.placeholder = placeholder;
-    }
-    parentNode.append(newDOMNode);
-  };
-  createDOMNode();
-
-  return {
-    name, nodeType, parent, text, inputType, value, class1, class2, taskID,
-  };
-};
 
 const buildInterface = () => {
   for (let i = 0; i < displayObjects.length; i++) {
@@ -47,14 +18,48 @@ const buildInterface = () => {
   addListeners();
 }
 
-const getInput = () => {
-  const value = document.querySelector('.location-input').value;
+
+const populateCard = async () => {
+  drawCard();
+  const weather = await getInput();
+  weather.units = 0;
+  console.log('weather is', weather);
+  console.log('weather.dt is', weather.readingTime);
+  console.log('weather.clouds is', weather.clouds);
+  document.querySelector('.location').textContent = weather.placeName;
+  document.querySelector('.temp').textContent = `${weather.airTemp}`;
+  const sunrise = weather.sunriseTime;
+  const sunset = weather.sunsetTime;
+  const description = getDescription(weather.id);
+  setBackground(description[1]);
+  document.querySelector('.sunrise').textContent = sunrise;
+  document.querySelector('.sunset').textContent = sunset;
+  document.querySelector('.description').textContent = description[0];
+  document.querySelector('.humidity').textContent = weather.humidity;
+  document.querySelector('.high').textContent = weather.tempMax;
+  document.querySelector('.low').textContent = weather.tempMin;
+  document.querySelector('.feelsLike').textContent = weather.feelsLike;
+  document.querySelector('.clouds').textContent = weather.clouds;
+  document.querySelector('.pressure').textContent = weather.pressure;
+  document.querySelector('.vis').textContent = weather.visibility;
+  const tempUnits = document.querySelectorAll('.temp-unit');
+  if (weather.units === 0) {
+    for (let i = 0; i < tempUnits.length; i += 1) {
+      tempUnits[i].textContent = '°C';
+    }    
+  }
+}
+
+const getInput = async () => {
+  const { value } = document.querySelector('.location-input');
   console.log('value is', value);
-  processInput(value);
+  const weatherObject = await processInput(value);
+  console.log('got input, weatherObject is', weatherObject);
+  return (weatherObject);
 }
 
 const addListeners = () => {
-  document.querySelector('.location-submit').addEventListener('click', getInput);
+  document.querySelector('.location-submit').addEventListener('click', populateCard);
 }
 
 export { buildInterface }
