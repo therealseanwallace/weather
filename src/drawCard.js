@@ -21,41 +21,46 @@ const drawCard = () => {
   //
   componentFactory(cardObjects.description);
   //
+  const feelsContainer = cardObjects.tempContainer;
+  feelsContainer.parent = '.details';
+  feelsContainer.class1 = 'feels-container';
+  feelsContainer.class2 = 'detail-container'
+  componentFactory(feelsContainer);
+  componentFactory(cardObjects.feelsLikeTitle);
+  const feelsTempContainer = cardObjects.tempUnitContainer;
+  feelsTempContainer.class1 = 'feels-temp-container';
+  feelsTempContainer.class2 = 'temp-details-container'
+  feelsTempContainer.parent = '.feels-container';
+  console.log('feelsTempContainer is', feelsTempContainer);
+  componentFactory(feelsTempContainer);
+
+  componentFactory(cardObjects.feelsLike);
+  const feelsUnits = cardObjects.tempUnits;
+  feelsUnits.parent = '.feels-temp-container';
+  componentFactory(feelsUnits);
+  //
   const humidityContainer = cardObjects.detailContainer;
   humidityContainer.class2 = 'humidity-container';
   componentFactory(humidityContainer);
   componentFactory(cardObjects.humidityTitle);
   componentFactory(cardObjects.humidity);
   // 
-  const feelsContainer = cardObjects.tempContainer;
-  feelsContainer.parent = '.details';
-  feelsContainer.class1 = 'feels-container';
-  feelsContainer.class2 = 'detail-container'
-  componentFactory(feelsContainer);
-  const feelsTempContainer = cardObjects.tempUnitContainer;
-  feelsTempContainer.class1 = 'feels-temp-container';
-  feelsTempContainer.parent = '.feels-container';
-  console.log('feelsTempContainer is', feelsTempContainer);
-  componentFactory(feelsTempContainer);
-  componentFactory(cardObjects.feelsLikeTitle);
-  componentFactory(cardObjects.feelsLike);
-  const feelsUnits = cardObjects.tempUnits;
-  feelsUnits.parent = '.feels-container';
-  componentFactory(feelsUnits);
-  //
+  
   const highContainer = cardObjects.tempContainer;
   highContainer.parent = '.details';
   highContainer.class1 = 'high-container';
   highContainer.class2 = 'detail-container';
   componentFactory(highContainer);
+  componentFactory(cardObjects.highTitle);
   const highTempContainer = cardObjects.tempUnitContainer;
   highTempContainer.class1 = 'high-temp-container';
+  highTempContainer.class2 = 'temp-details-container'
   highTempContainer.parent = '.high-container';
   componentFactory(highTempContainer);
-  componentFactory(cardObjects.highTitle);
+  
   componentFactory(cardObjects.high);
   const highUnits = cardObjects.tempUnits;
-  highUnits.parent = '.high-container'
+  highUnits.parent = '.high-temp-container'
   componentFactory(highUnits);
 
   const lowContainer = cardObjects.tempContainer;
@@ -63,14 +68,16 @@ const drawCard = () => {
   lowContainer.class1 = 'low-container';
   highContainer.class2 = 'detail-container';
   componentFactory(lowContainer);
+  componentFactory(cardObjects.lowTitle);
   const lowTempContainer = cardObjects.tempUnitContainer;
   lowTempContainer.class1 = 'low-temp-container';
+  lowTempContainer.class2 = 'temp-details-container'
   lowTempContainer.parent = '.low-container';
   componentFactory(lowTempContainer);
-  componentFactory(cardObjects.lowTitle);
+  
   componentFactory(cardObjects.low);
   const lowUnits = cardObjects.tempUnits;
-  lowUnits.parent = '.low-container'
+  lowUnits.parent = '.low-temp-container'
   componentFactory(lowUnits);
   
   const cloudsContainer = cardObjects.detailContainer;

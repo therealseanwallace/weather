@@ -127,9 +127,15 @@ const test = async () => {
   return (testProcessed);
 }
 
+
+
 const processInput = async (input) => {
   console.log('processing input. input is', input);
   const weather = await obtainWeather(input);
+  console.log('obtained weather. weather is,', weather);
+  if (weather === 404) {
+    return (404)
+  }
   const weatherProcessed = weatherFactory(weather);
   console.log('weatherProcessed is', weatherProcessed);
   return (weatherProcessed);

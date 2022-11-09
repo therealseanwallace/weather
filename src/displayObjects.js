@@ -192,4 +192,13 @@ const cardObjects = {
   },
 }
 
-export { displayObjects, cardObjects }
+const errors = {
+  404: {
+    nodeType: 'h2',
+    parent: '.content',
+    class1: 'error',
+    text: 'Error! City not found',
+  },
+}
+
+export { displayObjects, cardObjects, errors }

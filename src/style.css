@@ -91,5 +91,11 @@ main {
 .detail-container {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0px 60px 0px 32px;
+}
+
+.temp-details-container {
+  display: flex;
+  gap: 2px;
 }
