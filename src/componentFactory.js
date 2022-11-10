@@ -1,5 +1,4 @@
 const componentFactory = (element) => {
-  //console.log('componentFactory active! element is', element);
   const {
     name,
     nodeType,
@@ -12,9 +11,7 @@ const componentFactory = (element) => {
     taskID,
     placeholder,
   } = element;
-  console.log("componentFactory active! element is", element);
   const createDOMNode = () => {
-    console.log("parent is", parent);
     const parentNode = document.querySelector(parent);
     const newDOMNode = document.createElement(nodeType);
     if (text) {
