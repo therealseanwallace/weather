@@ -1,12 +1,20 @@
 const componentFactory = (element) => {
   //console.log('componentFactory active! element is', element);
   const {
-    name, nodeType, parent, text, inputType, value, class1,
-    class2, taskID, placeholder,
+    name,
+    nodeType,
+    parent,
+    text,
+    inputType,
+    value,
+    class1,
+    class2,
+    taskID,
+    placeholder,
   } = element;
-  console.log('componentFactory active! element is', element);
+  console.log("componentFactory active! element is", element);
   const createDOMNode = () => {
-    console.log('parent is', parent);
+    console.log("parent is", parent);
     const parentNode = document.querySelector(parent);
     const newDOMNode = document.createElement(nodeType);
     if (text) {
@@ -35,8 +43,16 @@ const componentFactory = (element) => {
   createDOMNode();
 
   return {
-    name, nodeType, parent, text, inputType, value, class1, class2, taskID,
+    name,
+    nodeType,
+    parent,
+    text,
+    inputType,
+    value,
+    class1,
+    class2,
+    taskID,
   };
 };
 
-export { componentFactory }
+export { componentFactory };

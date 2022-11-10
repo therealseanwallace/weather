@@ -1,94 +1,87 @@
-import Ash from './images/ash.jpg';
-import Clear from './images/clear.jpg';
-import Clouds from './images/clouds.jpg';
-import Dust from './images/dust.jpg';
-import Fog from './images/fog.jpg';
-import Haze from './images/haze.jpg';
-import LClouds from './images/lclouds.jpg';
-import Rain from './images/rain.jpg';
-import Smoke from './images/smoke.jpg';
-import Snow from './images/snow.jpg';
-import Storm from './images/storm.jpg';
-import Wind from './images/wind.jpg';
+import Ash from "./images/ash.jpg";
+import Clear from "./images/clear.jpg";
+import Clouds from "./images/clouds.jpg";
+import Dust from "./images/dust.jpg";
+import Fog from "./images/fog.jpg";
+import Haze from "./images/haze.jpg";
+import LClouds from "./images/lclouds.jpg";
+import Rain from "./images/rain.jpg";
+import Smoke from "./images/smoke.jpg";
+import Snow from "./images/snow.jpg";
+import Storm from "./images/storm.jpg";
+import Wind from "./images/wind.jpg";
 
 const setBackground = (img) => {
-  const card = document.querySelector('.weather-card');
-  console.log('card is', card);
-  console.log('img is', img);
+  const card = document.querySelector(".weather-card");
+  console.log("card is", card);
+  console.log("img is", img);
   let imgStr;
   switch (img) {
-    case 'Ash':
+    case "Ash":
       imgStr = `url('${Ash}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Clear':
+    case "Clear":
       imgStr = `url('${Clear}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Clouds':
+    case "Clouds":
       imgStr = `url('${Clouds}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Dust':
+    case "Dust":
       imgStr = `url('${Dust}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Fog':
+    case "Fog":
       imgStr = `url('${Fog}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Haze':
+    case "Haze":
       imgStr = `url('${Haze}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'LClouds':
+    case "LClouds":
       imgStr = `url('${LClouds}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Rain':
+    case "Rain":
       imgStr = `url('${Rain}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Smoke':
+    case "Smoke":
       imgStr = `url('${Smoke}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Storm':
+    case "Storm":
       imgStr = `url('${Storm}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Snow':
+    case "Snow":
       imgStr = `url('${Snow}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
-    case 'Wind':
+    case "Wind":
       imgStr = `url('${Wind}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
       break;
     default:
       imgStr = `url('${Clear}')`;
-      console.log('imgStr is', imgStr);
+      console.log("imgStr is", imgStr);
       card.style.backgroundImage = imgStr;
+  }
+};
 
-}
-
-
-
-
-
-  
-}
-
-export { setBackground }
+export { setBackground };
