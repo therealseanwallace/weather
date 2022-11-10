@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { obtainWeather } from "./obtainWeather";
 
 const convertTemp = (temp) => {
@@ -22,7 +21,6 @@ const convertWind = (deg) => {
   // Takes wind direction as degrees and returns
   let direction; // an index for computer use
   let index;
-  const testValue = 1;
   switch (true) {
     case deg >= 337.5 || deg < 22.5:
       direction = "North";

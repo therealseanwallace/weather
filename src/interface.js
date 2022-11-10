@@ -1,5 +1,3 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable default-case */
 import { displayObjects, errors } from "./displayObjects";
 import { processInput } from "./app";
 import { getDescription } from "./getDescription";
