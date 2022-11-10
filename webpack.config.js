@@ -13,7 +13,7 @@ module.exports = {
 
     new HtmlWebpackPlugin({
 
-      title: 'Weather App',
+      title: 'Odin Weather App',
 
     }),
 
