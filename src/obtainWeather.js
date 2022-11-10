@@ -4,7 +4,7 @@ const obtainWeather = async (location) => {
   try {
     
     const response = await fetch(
-      `//api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`,
       {
         mode: "cors",
       }
