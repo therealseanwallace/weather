@@ -1,10 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { fromUnixTime } from 'date-fns'
 import { obtainWeather } from "./obtainWeather"
-
-//const getsWeather = getWeather;
-
-//const test = (() => { console.log(getWeather('London')); })();
+import { convertTime } from './conversions';
 
 const convertTemp = (temp) => {
   const newTemp = temp - 273.15;
@@ -14,14 +11,17 @@ const convertTemp = (temp) => {
 
 const convertTimes = (time, offset) => { // Takes unix time from Open Weather and returns a string with the remote
   const timeOffset = time + offset;      // time (i.e. the place we're getting weather for) in human-readable format
-  const localOffset = ((new Date().getTimezoneOffset()) * 60) * 1000;
-  const timeConverted = (timeOffset * 1000) + localOffset;
+  //const localOffset = ((new Date().getTimezoneOffset()) * 60) * 1000;
+  const timeConverted = (timeOffset * 1000) /*+ localOffset*/;
   const d = new Date(timeConverted);
-  const humanDate = d.toLocaleString();
-  const humanTime = humanDate.split(', ')[1];
-  console.log('humanTime is', humanTime);
-  return (humanTime);
+  const dString = JSON.stringify(d);
+  console.log('dString is', dString);
+  const regex = /([01]\d|2[0-3]):[0-5]\d/;
+  const time24h = dString.match(regex)[0];
+  console.log('time24h is', time24h);
+  return (time24h)
 }
+
 
 const convertWind = (deg) => {                 // Takes wind direction as degrees and returns
   console.log('converting wind. deg is', deg); // an array with direction in plain English and
@@ -42,7 +42,7 @@ const convertWind = (deg) => {                 // Takes wind direction as degree
       index = 2;
       break;
     case (deg < 78.75):
-      direction = 'East-North-EasT';
+      direction = 'East-North-East';
       index = 3;
       break;
     case (deg < 101.25):
@@ -132,17 +132,12 @@ const test = async () => {
 const processInput = async (input) => {
   console.log('processing input. input is', input);
   const weather = await obtainWeather(input);
-  console.log('obtained weather. weather is,', weather);
-  if (weather === 404) {
-    return (404)
+  if (typeof weather === 'number') {
+    return (weather)
   }
   const weatherProcessed = weatherFactory(weather);
   console.log('weatherProcessed is', weatherProcessed);
   return (weatherProcessed);
 }
-
-/*const test = () => {
-  obtainWeather();
-};*/
 
 export { test, processInput }

@@ -1,87 +1,126 @@
 /* RESET STYLES */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 * {
   margin: 0;
 }
-html, body {
+html,
+body {
   height: 100%;
 }
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
-#root, #__next {
+#root,
+#__next {
   isolation: isolate;
 }
 
 * {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
 }
 
 /* STYLES */
 
 main {
-	/*height: 100vh;*/
+  /*height: 100vh;*/
+}
+
+.input-container {
+  background-color: rgba(73, 73, 73, 0.85);
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 32px 0 32px 0;
+  border-radius: 10px;
 }
 
 .content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   width: 400px;
   margin: auto;
   margin-bottom: 40px;
-	/* height: 1vh; */
+  /* height: 1vh; */
 }
 
 .weather-card {
   width: 400px;
   height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
 }
 
-.summary, .details {
+.summary,
+.details {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: whitesmoke;
-  background-color: rgba(73, 73, 73, 0.727);
+  background-color: rgba(73, 73, 73, 0.85);
+  padding: 28px 0 42px 0;
+  width: 80%;
+  margin: 74px auto 24px auto;
+  border-radius: 10px;
 }
 
-.summary {
-  margin-top: 74px;
-  padding-bottom: 42px;
+.details {
+  padding: 14px 0 21px 0;
 }
 
 .summary > p:first-of-type {
-  font-size: 1.8rem;
-  margin-top: 28px;
+  font-size: 1.9rem;
 }
 
-.temp-container, .high-container, .low-container, .feels-container {
+.summary > p:last-of-type {
+  font-size: 1.6rem;
+}
+
+.temp-container,
+.high-container,
+.low-container,
+.feels-container {
   display: flex;
   gap: 10px;
 }
 
-.temp-container > p:first-of-type {
+.temp-container > p {
   font-size: 3rem;
-}
-
-.temp-container > p:last-of-type {
-  font-size: 3rem;
+  font-weight: bold;
 }
 
 .description {
@@ -92,10 +131,44 @@ main {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 0px 60px 0px 32px;
+  padding: 0px 20px 0px 20px;
+}
+
+.detail-container > p:first-of-type {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.detail-container > p:nth-of-type(2) {
+  font-size: 18px;
+}
+
+.temp-details-container > * {
+  font-size: 20px;
 }
 
 .temp-details-container {
   display: flex;
   gap: 2px;
+}
+
+.toggle-units {
+  color: whitesmoke;
+  background-color: rgba(73, 73, 73, 0.85);
+  font-size: 12px;
+  padding: 8px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 10px;
+}
+
+.location-input {
+  margin-bottom: 12px;
+  margin-bottom: 12px;
+  color: black;
+  font-weight: bold;
+}
+
+.location-input::placeholder {
+  color: rgba(73, 73, 73, 0.85);
 }
