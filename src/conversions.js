@@ -11,7 +11,6 @@ const convertTemp = (temp, unit) => {
 const roundTemp = (temp) => {
   let newTemp = temp;
   newTemp = Math.round(temp * 10) / 10;
-  console.log("newTemp is", newTemp);
   return newTemp;
 };
 
@@ -33,14 +32,10 @@ const convertTime = (oldTime, unit) => {
     if (timeSplit[0] <= 11 && oldTimeSplit[1] === "PM") {
       newTime = `${Number(timeSplit[0]) + 12}:${timeSplit[1]}`;
     }
-    console.log("newTime is", newTime);
     return newTime;
   }
   const oldTimeSplit = oldTime.split(":");
-  console.log("oldTimeSplit[0] is", oldTimeSplit[0]);
   const char1 = oldTimeSplit[0].charAt(0);
-  console.log("char1 is", char1);
-  console.log(typeof char1);
   if (Number(char1) === 0) {
     oldTimeSplit[0] = oldTimeSplit[0].charAt(1);
   }
@@ -54,27 +49,21 @@ const convertTime = (oldTime, unit) => {
   if (oldTimeSplit[0] > 12) {
     newTime = `${oldTimeSplit[0] - 12}:${oldTimeSplit[1]} PM`;
   }
-  console.log("newTime is", newTime);
   return newTime;
 };
 
 const convertTimes = (unit) => {
-  console.log("convertTimes! unit is", unit);
   const times = document.querySelectorAll(".time");
-  console.log("times is", times);
   if (unit === 0) {
     // i.e. if time is currently in AM/PM notation
-    for (let i = 0; i < times.length; i++) {
+    for (let i = 0; i < times.length; i += 1) {
       const element = times[i].textContent;
-      console.log("element is", element);
-      console.log("converting times in for loop.");
-      console.log(convertTime(element, 0));
       const newTime = convertTime(element, 0);
       times[i].textContent = newTime;
     }
   } else {
     // i.e. if time is currently in 24h notation
-    for (let i = 0; i < times.length; i++) {
+    for (let i = 0; i < times.length; i += 1) {
       const element = times[i].textContent;
       const newTime = convertTime(element, 1);
       times[i].textContent = newTime;
@@ -85,28 +74,38 @@ const convertTimes = (unit) => {
 const convertTemps = (unit) => {
   const temperatures = document.querySelectorAll(".temperature");
   if (unit === 0) {
-    for (let i = 0; i < temperatures.length; i++) {
+    for (let i = 0; i < temperatures.length; i += 1) {
       const el = temperatures[i].textContent;
       const newTemp = convertTemp(el, 0);
       const newTempRounded = roundTemp(newTemp);
       temperatures[i].textContent = newTempRounded;
-      console.log("newTemp is", newTemp);
     }
   } else {
-    for (let i = 0; i < temperatures.length; i++) {
+    for (let i = 0; i < temperatures.length; i += 1) {
       const el = temperatures[i].textContent;
       const newTemp = convertTemp(el, 1);
       const newTempRounded = roundTemp(newTemp);
       temperatures[i].textContent = newTempRounded;
-      console.log("newTemp is", newTemp);
     }
   }
 };
 
+const convertWind = (unit) => {
+  const wind = document.querySelector(".wind-speed");
+  const windUnits = document.querySelector(".wind-units");
+  if (unit === 0) {
+    wind.dataset.kmh = wind.textContent;
+    const kmToM = wind.textContent * 0.621371;
+    wind.textContent = Math.round(kmToM);
+    windUnits.textContent = "mph";
+  } else {
+    wind.textContent = wind.dataset.kmh;
+    windUnits.textContent = "km/h";
+  }
+};
+
 const convertVis = (value, unit) => {
-  console.log("convertVis!");
   const vis = document.querySelector(".vis");
-  console.log("vis is", vis);
   if (unit === 0) {
     vis.textContent = Math.round(vis.textContent * 1.09361);
   } else {
@@ -114,4 +113,11 @@ const convertVis = (value, unit) => {
   }
 };
 
-export { roundTemp, convertTimes, convertTime, convertTemps, convertVis };
+export {
+  roundTemp,
+  convertTimes,
+  convertTime,
+  convertTemps,
+  convertVis,
+  convertWind,
+};

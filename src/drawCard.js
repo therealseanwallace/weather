@@ -35,7 +35,6 @@ const drawCard = () => {
   feelsTempContainer.class1 = "feels-temp-container";
   feelsTempContainer.class2 = "temp-details-container";
   feelsTempContainer.parent = ".feels-container";
-  console.log("feelsTempContainer is", feelsTempContainer);
   componentFactory(feelsTempContainer);
 
   componentFactory(cardObjects.feelsLike);
@@ -113,6 +112,22 @@ const drawCard = () => {
   componentFactory(visContainer);
   componentFactory(cardObjects.visTitle);
   componentFactory(cardObjects.vis);
+
+  const windDirContainer = cardObjects.detailContainer;
+  windDirContainer.class2 = "wind-dir-container";
+  componentFactory(windDirContainer);
+  componentFactory(cardObjects.windDirTitle);
+  componentFactory(cardObjects.windDir);
+
+  const windSpeedContainer = cardObjects.detailContainer;
+  windSpeedContainer.class2 = "wind-speed-container";
+  componentFactory(windSpeedContainer);
+  componentFactory(cardObjects.windSpeedTitle);
+  const windSpeedUnitContainer = cardObjects.windUnitContainer;
+  windSpeedUnitContainer.class1 = "wind-speed-unit-container";
+  componentFactory(windSpeedUnitContainer);
+  componentFactory(cardObjects.windSpeed);
+  componentFactory(cardObjects.windUnits);
 };
 
 export { drawCard };

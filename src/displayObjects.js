@@ -188,6 +188,28 @@ const cardObjects = {
     class1: "vis-title",
     text: "Visibility (meters)",
   },
+  windDirTitle: {
+    nodeType: "p",
+    parent: ".wind-dir-container",
+    class1: "wind-dir-title",
+    text: "Wind direction",
+  },
+  windDir: {
+    nodeType: "p",
+    parent: ".wind-dir-container",
+    class1: "wind-dir",
+  },
+  windSpeedTitle: {
+    nodeType: "p",
+    parent: ".wind-speed-container",
+    class1: "wind-speed-title",
+    text: "Wind speed",
+  },
+  windSpeed: {
+    nodeType: "p",
+    parent: ".wind-speed-unit-container",
+    class1: "wind-speed",
+  },
   detailContainer: {
     nodeType: "div",
     parent: ".details",
@@ -198,6 +220,16 @@ const cardObjects = {
   },
   tempUnitContainer: {
     nodeType: "div",
+  },
+  windUnitContainer: {
+    nodeType: "div",
+    parent: ".wind-speed-container",
+  },
+  windUnits: {
+    nodeType: "p",
+    parent: ".wind-speed-unit-container",
+    text: "km/h",
+    class1: "wind-units",
   },
   toggleUnits: {
     nodeType: "input",
