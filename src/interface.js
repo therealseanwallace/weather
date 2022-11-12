@@ -47,8 +47,22 @@ const toggleUnits = () => {
   }
 };
 
+const drawForecastCard = () => {
+  
+}
+
+const populateForecasts = (forecasts) => {
+  for (let i = 0; i < forecasts.length; i++) {
+    const element = forecasts[i];
+    console.log(forecasts[i]);
+    
+  }
+}
+
 const populateCard = async () => {
+  console.log('populateCard!');
   const weather = await getInput();
+  console.log('populateCard! weather is', weather);
   if (typeof weather === "number") {
     if (document.querySelector(".weather-card")) {
       document.querySelector(".weather-card").remove();
@@ -91,6 +105,7 @@ const populateCard = async () => {
     document.querySelector(".vis").textContent = weather.visibility;
     document.querySelector(".wind-dir").textContent = weather.wind[1][0];
     document.querySelector(".wind-speed").textContent = weather.wind[0];
+    populateForecasts(weather.forecast);
     const tempUnits = document.querySelectorAll(".temp-unit");
     if (weather.units === 0) {
       for (let i = 0; i < tempUnits.length; i += 1) {
@@ -103,9 +118,13 @@ const populateCard = async () => {
 const getInput = async () => {
   const { value } = document.querySelector(".location-input");
   const weatherObject = await processInput(value);
+
   if (typeof weatherObject === "number") {
+    console.log('weatherObject is', weatherObject);
     return weatherObject;
+    
   }
+  console.log('weatherObject is', weatherObject);
   return weatherObject;
 };
 
