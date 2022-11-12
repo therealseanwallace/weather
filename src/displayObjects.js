@@ -33,6 +33,20 @@ const displayObjects = [
     placeholder: "Please enter a town or city",
   },
   {
+    name: "countryInput",
+    nodeType: "select",
+    parent: ".input-container",
+    class1: "country-input",
+    value: "",
+  },
+  {
+    name: "stateInput",
+    nodeType: "select",
+    parent: ".input-container",
+    class1: "state-input",
+    value: "",
+  },
+  {
     name: "submit",
     nodeType: "input",
     parent: ".input-container",
@@ -238,6 +252,30 @@ const cardObjects = {
     value: "Click to toggle units",
     inputType: "button",
   },
+  forecastContainer: {
+    nodeType: "div",
+    parent: ".weather-card",
+    class1: "forecast-container",
+  },
+  forecast: {
+    nodeType: "div",
+    parent: ".forecast-container",
+    class1: "forecast",
+  },
+  forecastTitle: {
+    nodeType: "h3",
+    class1: "forecast-title",
+  },
+  forecastTime: {
+    nodeType: "p",
+    class1: "forecast-time",
+  },
+  forecastTemp: {
+   nodetype: "p",
+   class1: "forecast-temp",
+
+  },
+
 };
 
 const errors = {

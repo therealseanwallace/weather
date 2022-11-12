@@ -18,8 +18,8 @@ const convertTimes = (time, offset) => {
 };
 
 const convertWind = (deg) => {
-  // Takes wind direction as degrees and returns
-  let direction; // an index for computer use
+  // Takes wind direction as degrees and returns a human-readable string
+  let direction;
   let index;
   switch (true) {
     case deg >= 337.5 || deg < 22.5:
@@ -50,28 +50,8 @@ const convertWind = (deg) => {
       direction = "West";
       index = 6;
       break;
-    case deg < 337.5:
-      direction = "North-West";
-      index = 7;
-      break;
-    case deg < 191.25:
-      direction = "South";
-      index = 8;
-      break;
-    case deg < 213.75:
-      direction = "South-South-West";
-      index = 9;
-      break;
-    case deg < 236.25:
-      direction = "South-West";
-      index = 10;
-      break;
-    case deg < 258.75:
-      direction = "West-South-West";
-      index = 11;
-      break;
     default:
-      direction = "West";
+      direction = "North-West";
   }
   return [direction, index];
 };
@@ -83,8 +63,8 @@ const weatherFactory = (weather) => {
   const clouds = weather.clouds.all;
   const { humidity, pressure, temp } = weather.main;
   const { id } = weather.weather[0];
-  const { dt } = weather;
-  const feelsLike = convertTemp(weather.main["main"]["feels_like"]);
+  const { dt, forecast } = weather;
+  const feelsLike = convertTemp(weather["main"]["feels_like"]);
   const tempMin = convertTemp(weather["main"]["temp_min"]);
   const tempMax = convertTemp(weather["main"]["temp_max"]);
   const airTemp = convertTemp(weather["main"]["temp"]);
@@ -111,6 +91,7 @@ const weatherFactory = (weather) => {
     wind,
     id,
     readingTime,
+    forecast
   };
 };
 

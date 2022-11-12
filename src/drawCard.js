@@ -128,6 +128,8 @@ const drawCard = () => {
   componentFactory(windSpeedUnitContainer);
   componentFactory(cardObjects.windSpeed);
   componentFactory(cardObjects.windUnits);
+
+  componentFactory(cardObjects.forecastContainer);
 };
 
 export { drawCard };
