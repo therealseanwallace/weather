@@ -52,6 +52,17 @@ const convertTime = (oldTime, unit) => {
   return newTime;
 };
 
+const convertTimesFromUnix = (time, offset) => {
+  // Takes unix time from Open Weather and returns a string with the remote
+  const timeOffset = time + offset; // time (i.e. the place we're getting weather for) in human-readable format
+  const timeConverted = timeOffset * 1000;
+  const d = new Date(timeConverted);
+  const dString = JSON.stringify(d);
+  const regex = /([01]\d|2[0-3]):[0-5]\d/;
+  const time24h = dString.match(regex)[0];
+  return time24h;
+};
+
 const convertTimes = (unit) => {
   const times = document.querySelectorAll(".time");
   if (unit === 0) {
@@ -113,6 +124,12 @@ const convertVis = (value, unit) => {
   }
 };
 
+const convertFromKelvin = (temp) => {
+  const newTemp = temp - 273.15;
+  const tempRounded = Math.round(newTemp * 100) / 100;
+  return tempRounded;
+};
+
 export {
   roundTemp,
   convertTimes,
@@ -120,4 +137,6 @@ export {
   convertTemps,
   convertVis,
   convertWind,
+  convertFromKelvin,
+  convertTimesFromUnix
 };

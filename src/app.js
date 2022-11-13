@@ -1,21 +1,8 @@
 import { obtainWeather } from "./obtainWeather";
+import { convertFromKelvin, convertTimesFromUnix } from "./conversions";
 
-const convertTemp = (temp) => {
-  const newTemp = temp - 273.15;
-  const tempRounded = Math.round(newTemp * 100) / 100;
-  return tempRounded;
-};
 
-const convertTimes = (time, offset) => {
-  // Takes unix time from Open Weather and returns a string with the remote
-  const timeOffset = time + offset; // time (i.e. the place we're getting weather for) in human-readable format
-  const timeConverted = timeOffset * 1000;
-  const d = new Date(timeConverted);
-  const dString = JSON.stringify(d);
-  const regex = /([01]\d|2[0-3]):[0-5]\d/;
-  const time24h = dString.match(regex)[0];
-  return time24h;
-};
+
 
 const convertWind = (deg) => {
   // Takes wind direction as degrees and returns a human-readable string
@@ -66,13 +53,13 @@ const weatherFactory = (weather) => {
   const { humidity, pressure, temp } = weather.main;
   const { id } = weather.weather[0];
   const { dt, forecast } = weather;
-  const feelsLike = convertTemp(weather["main"]["feels_like"]);
-  const tempMin = convertTemp(weather["main"]["temp_min"]);
-  const tempMax = convertTemp(weather["main"]["temp_max"]);
-  const airTemp = convertTemp(weather["main"]["temp"]);
-  const sunriseTime = convertTimes(sunrise, weather.timezone);
-  const sunsetTime = convertTimes(sunset, weather.timezone);
-  const readingTime = convertTimes(dt, weather.timezone);
+  const feelsLike = convertFromKelvin(weather["main"]["feels_like"]);
+  const tempMin = convertFromKelvin(weather["main"]["temp_min"]);
+  const tempMax = convertFromKelvin(weather["main"]["temp_max"]);
+  const airTemp = convertFromKelvin(weather["main"]["temp"]);
+  const sunriseTime = convertTimesFromUnix(sunrise, weather.timezone);
+  const sunsetTime = convertTimesFromUnix(sunset, weather.timezone);
+  const readingTime = convertTimesFromUnix(dt, weather.timezone);
   const { visibility } = weather;
   const windConverted = convertWind(weather.wind.deg);
   const windSpeedkmh = Math.round(weather.wind.speed * 3.6);

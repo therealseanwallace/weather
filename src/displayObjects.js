@@ -264,23 +264,26 @@ const cardObjects = {
     parent: ".weather-card",
     class1: "forecast-container",
   },
-  forecast: {
+  forecastCard: {
     nodeType: "div",
     parent: ".forecast-container",
     class1: "forecast",
-  },
-  forecastTitle: {
-    nodeType: "h3",
-    class1: "forecast-title",
   },
   forecastTime: {
     nodeType: "p",
     class1: "forecast-time",
   },
   forecastTemp: {
-   nodetype: "p",
+   nodeType: "p",
    class1: "forecast-temp",
-
+  },
+  forecastSummary: {
+    nodeType: "p",
+    class1: "forecast-summary",
+  },
+  forecastHumidity: {
+   nodeType: "p",
+   class1: "forecast-humidity",
   },
 
 };

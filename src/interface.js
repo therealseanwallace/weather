@@ -1,4 +1,4 @@
-import { displayObjects, errors } from "./displayObjects";
+import { cardObjects, displayObjects, errors } from "./displayObjects";
 import { processInput } from "./app";
 import { getDescription } from "./getDescription";
 import { drawCard } from "./drawCard";
@@ -10,6 +10,8 @@ import {
   convertTemps,
   convertVis,
   convertWind,
+  convertFromKelvin,
+  convertTimesFromUnix,
 } from "./conversions";
 
 const buildInterface = () => {
@@ -47,12 +49,44 @@ const toggleUnits = () => {
   }
 };
 
-const drawForecastCard = () => {};
+const populateForecastCard = (forecast, i) => {
+  console.log('populateForecastCard! forecast, i is', forecast, i);
+  const forecastSummary = document.querySelector(`.forecast-summary${i}`);
+  const forecastTemp = document.querySelector(`.forecast-temp${i}`);
+  const forecastHumidity = document.querySelector(`.forecast-humidity${i}`);
+  const forecastTime = document.querySelector(`.forecast-time${i}`);
+  forecastSummary.textContent = forecast.weather[0].main;
+  forecastTemp.textContent = convertFromKelvin(forecast.main.temp);
+  forecastHumidity.textContent = forecast.main.humidity;
+  forecastTime.textContent = forecast['dt_txt'];
+};
+
+const drawForecastCard = (forecast, i) => {
+  const { forecastCard, forecastTime, forecastTemp, forecastSummary, forecastHumidity } =
+    cardObjects;
+  console.log('drawForecastCard. forecast, i is', forecast, i);
+  forecastCard.class2 = `forecast${i}`;
+  componentFactory(forecastCard);
+  forecastTime.class2 = `forecast-time${i}`;
+  forecastTime.parent = `.forecast${i}`;
+  forecastTemp.class2 = `forecast-temp${i}`;
+  forecastTemp.parent = `.forecast${i}`;
+  forecastHumidity.class2 = `forecast-humidity${i}`;
+  forecastHumidity.parent = `.forecast${i}`;
+  forecastSummary.class2 = `forecast-summary${i}`;
+  forecastSummary.parent = `.forecast${i}`;
+  componentFactory(forecastSummary);
+  componentFactory(forecastTemp);
+  componentFactory(forecastHumidity);
+  componentFactory(forecastTime);
+  populateForecastCard(forecast, i);
+};
 
 const populateForecasts = (forecasts) => {
+  console.log('populateForecasts! forecasts is', forecasts);
   for (let i = 0; i < forecasts.length; i++) {
     const element = forecasts[i];
-    console.log(forecasts[i]);
+    drawForecastCard(element, i);
   }
 };
 

@@ -22,8 +22,6 @@ const obtainWeather = async (location) => {
     
     const remoteCoords = await fetchCoords.json();
     console.log('remoteCoords is', remoteCoords);
-    // this is what we are working on. we want to make sure we are getting the user's proper location. having done that,
-    // we'll move on to drawing the forecast for the location.
     
     const fetchForecast = await fetch (
       `https://api.openweathermap.org/data/2.5/forecast?lat=${remoteCoords[0].lat}&lon=${remoteCoords[0].lon}&APPID=${apiKey}`,
