@@ -58,7 +58,9 @@ const convertWind = (deg) => {
 
 const weatherFactory = (weather) => {
   // Takes the object received from Open Weather's API and returns a weather object containing
-  const placeName = weather.name; // only the weather data we will use in this app
+  // only the weather data we will use in this app
+  console.log('weatherFactory! weather is', weather);
+  const placeName = weather.name; 
   const { country, sunrise, sunset } = weather.sys;
   const clouds = weather.clouds.all;
   const { humidity, pressure, temp } = weather.main;

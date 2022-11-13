@@ -1,5 +1,6 @@
 import { componentFactory } from "./componentFactory";
 import { cardObjects } from "./displayObjects";
+import crsMin from "./crs.min";
 
 const drawCard = () => {
   if (document.querySelector(".weather-card")) {

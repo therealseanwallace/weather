@@ -47,22 +47,19 @@ const toggleUnits = () => {
   }
 };
 
-const drawForecastCard = () => {
-  
-}
+const drawForecastCard = () => {};
 
 const populateForecasts = (forecasts) => {
   for (let i = 0; i < forecasts.length; i++) {
     const element = forecasts[i];
     console.log(forecasts[i]);
-    
   }
-}
+};
 
 const populateCard = async () => {
-  console.log('populateCard!');
+  console.log("populateCard!");
   const weather = await getInput();
-  console.log('populateCard! weather is', weather);
+  console.log("populateCard! weather is", weather);
   if (typeof weather === "number") {
     if (document.querySelector(".weather-card")) {
       document.querySelector(".weather-card").remove();
@@ -116,22 +113,47 @@ const populateCard = async () => {
 };
 
 const getInput = async () => {
-  const { value } = document.querySelector(".location-input");
-  const weatherObject = await processInput(value);
-
-  if (typeof weatherObject === "number") {
-    console.log('weatherObject is', weatherObject);
+  const townCityInput = document.querySelector(".location-input");
+  const townCityValue = townCityInput.value;
+  const countrySelect = document.querySelector(".crs-country");
+  const countrySelectValue = countrySelect.value;
+  let stateSelectValue;
+  let weatherObject;
+  if (countrySelectValue === "US") {
+    stateSelectValue = document.querySelector(".state-input").value;
+    weatherObject = await processInput([
+      townCityValue,
+      countrySelectValue,
+      stateSelectValue,
+    ]);
+    console.log("weatherObject is", weatherObject);
     return weatherObject;
-    
   }
-  console.log('weatherObject is', weatherObject);
+  weatherObject = await processInput([townCityValue, countrySelectValue]);
+  console.log("weatherObject is", weatherObject);
   return weatherObject;
+};
+
+const showStateifUS = () => {
+  const country = document.querySelector(".crs-country");
+  console.log("country is", country, "value is", country.value);
+  if (country.value == "US") {
+    const stateInput = document.querySelector(".state-input");
+    stateInput.classList.remove("hidden");
+  }
+  if (country.value !== "US") {
+    const stateInput = document.querySelector(".state-input");
+    stateInput.classList.add("hidden");
+  }
 };
 
 const addListeners = () => {
   document
     .querySelector(".location-submit")
     .addEventListener("click", populateCard);
+  document
+    .querySelector(".crs-country")
+    .addEventListener("click", showStateifUS);
 };
 
 export { buildInterface };
