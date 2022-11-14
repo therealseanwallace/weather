@@ -57,9 +57,10 @@ const weatherFactory = (weather) => {
   const tempMin = convertFromKelvin(weather["main"]["temp_min"]);
   const tempMax = convertFromKelvin(weather["main"]["temp_max"]);
   const airTemp = convertFromKelvin(weather["main"]["temp"]);
-  const sunriseTime = convertTimesFromUnix(sunrise, weather.timezone);
-  const sunsetTime = convertTimesFromUnix(sunset, weather.timezone);
-  const readingTime = convertTimesFromUnix(dt, weather.timezone);
+  const offset = weather.timezone;
+  const sunriseTime = convertTimesFromUnix(sunrise, offset);
+  const sunsetTime = convertTimesFromUnix(sunset, offset);
+  const readingTime = convertTimesFromUnix(dt, offset);
   const { visibility } = weather;
   const windConverted = convertWind(weather.wind.deg);
   const windSpeedkmh = Math.round(weather.wind.speed * 3.6);
@@ -80,7 +81,8 @@ const weatherFactory = (weather) => {
     wind,
     id,
     readingTime,
-    forecast
+    forecast,
+    offset,
   };
 };
 

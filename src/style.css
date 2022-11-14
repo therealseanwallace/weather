@@ -178,3 +178,22 @@ h6 {
 .hidden {
   display: none;
 }
+
+.forecast-container {
+  display: flex;
+  overflow-x: scroll;
+  width: 80%;
+  margin-bottom: 40px;
+  scrollbar-color: rgba(0, 0, 0, 0.774) whitesmoke;
+  padding: 20px;
+  background-color: rgba(73, 73, 73, 0.85);
+  color: whitesmoke;
+  border-radius: 10px;
+}
+
+.forecast {
+  margin-right: 20px;
+  background-color: rgba(73, 73, 73, 0.85);
+  border-radius: 10px;
+  padding: 20px;
+}

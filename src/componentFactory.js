@@ -8,6 +8,7 @@ const componentFactory = (element) => {
     value,
     class1,
     class2,
+    class3,
     taskID,
     placeholder,
     dataAttr,
@@ -32,6 +33,9 @@ const componentFactory = (element) => {
     }
     if (class2) {
       newDOMNode.classList.add(class2);
+    }
+    if (class3) {
+      newDOMNode.classList.add(class3);
     }
     if (placeholder) {
       newDOMNode.placeholder = placeholder;

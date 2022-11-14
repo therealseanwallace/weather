@@ -49,44 +49,88 @@ const toggleUnits = () => {
   }
 };
 
-const populateForecastCard = (forecast, i) => {
-  console.log('populateForecastCard! forecast, i is', forecast, i);
+const trimDateTime = (dateTime) => {
+  
+}
+const populateForecastCard = (forecast, i, offset) => {
+  console.log("populateForecastCard! forecast, i, offset is", forecast, i, offset);
   const forecastSummary = document.querySelector(`.forecast-summary${i}`);
   const forecastTemp = document.querySelector(`.forecast-temp${i}`);
   const forecastHumidity = document.querySelector(`.forecast-humidity${i}`);
   const forecastTime = document.querySelector(`.forecast-time${i}`);
+  const forecastCount = document.querySelector(`.forecast-count${i}`);
   forecastSummary.textContent = forecast.weather[0].main;
   forecastTemp.textContent = convertFromKelvin(forecast.main.temp);
   forecastHumidity.textContent = forecast.main.humidity;
-  forecastTime.textContent = forecast['dt_txt'];
+  const { dt } = forecast;
+  const forecastTime24h = convertTimesFromUnix(dt, offset);
+  forecastTime.textContent = forecastTime24h;
+  if (i === 0) {
+    console.log('forecastCount is', forecastCount);
+    forecastCount.textContent = 'First forecast';
+  } else {
+    let hours = i * 3;
+    if (hours < 24) {
+      forecastCount.textContent = `+ ${hours} hours`;
+    } else {
+      let days = hours / 24;
+      //const remainder = 24 % hours;
+      console.log('days is', days);
+      //console.log('remainder is', remainder);
+      const daysRemainder = days % 1;
+      const daysRounded = days - daysRemainder;
+      console.log('daysRounded is', daysRounded);
+      forecastCount.textContent = `+ ${daysRounded} days`;
+    }
+    
+    console.log('hours is', hours);
+
+  }
 };
 
-const drawForecastCard = (forecast, i) => {
-  const { forecastCard, forecastTime, forecastTemp, forecastSummary, forecastHumidity } =
-    cardObjects;
-  console.log('drawForecastCard. forecast, i is', forecast, i);
+const drawForecastCard = (forecast, i, offset) => {
+  const {
+    forecastCard,
+    forecastTime,
+    forecastTemp,
+    forecastDescription,
+    forecastHumidity,
+    tempContainer,
+    tempUnits,
+    forecastCount,
+  } = cardObjects;
+  console.log("drawForecastCard. forecast, i is", forecast, i);
   forecastCard.class2 = `forecast${i}`;
   componentFactory(forecastCard);
   forecastTime.class2 = `forecast-time${i}`;
   forecastTime.parent = `.forecast${i}`;
   forecastTemp.class2 = `forecast-temp${i}`;
-  forecastTemp.parent = `.forecast${i}`;
+  forecastTemp.parent = `.forecast-temp-container${i}`;
   forecastHumidity.class2 = `forecast-humidity${i}`;
   forecastHumidity.parent = `.forecast${i}`;
-  forecastSummary.class2 = `forecast-summary${i}`;
-  forecastSummary.parent = `.forecast${i}`;
-  componentFactory(forecastSummary);
+  forecastDescription.class2 = `forecast-summary${i}`;
+  forecastDescription.parent = `.forecast${i}`;
+  tempUnits.class2 = `forecast-temp-units${i}`;
+  tempUnits.parent = `.forecast-temp-container${i}`;
+  tempContainer.parent = `.forecast${i}`;
+  tempContainer.class2  = `forecast-temp-container${i}`;
+  forecastCount.parent = `.forecast${i}`;
+  forecastCount.class2  = `forecast-count${i}`;
+  componentFactory(forecastDescription);
+  componentFactory(tempContainer);
   componentFactory(forecastTemp);
+  componentFactory(tempUnits);
   componentFactory(forecastHumidity);
   componentFactory(forecastTime);
-  populateForecastCard(forecast, i);
+  componentFactory(forecastCount);
+  populateForecastCard(forecast, i, offset);
 };
 
-const populateForecasts = (forecasts) => {
-  console.log('populateForecasts! forecasts is', forecasts);
+const populateForecasts = (forecasts, offset) => {
+  console.log("populateForecasts! forecasts is", forecasts);
   for (let i = 0; i < forecasts.length; i++) {
     const element = forecasts[i];
-    drawForecastCard(element, i);
+    drawForecastCard(element, i, offset);
   }
 };
 
@@ -136,7 +180,7 @@ const populateCard = async () => {
     document.querySelector(".vis").textContent = weather.visibility;
     document.querySelector(".wind-dir").textContent = weather.wind[1][0];
     document.querySelector(".wind-speed").textContent = weather.wind[0];
-    populateForecasts(weather.forecast);
+    populateForecasts(weather.forecast, weather.offset);
     const tempUnits = document.querySelectorAll(".temp-unit");
     if (weather.units === 0) {
       for (let i = 0; i < tempUnits.length; i += 1) {

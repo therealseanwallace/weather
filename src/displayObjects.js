@@ -105,6 +105,11 @@ const cardObjects = {
     parent: ".summary",
     class1: "description",
   },
+  forecastDescription: {
+    nodeType: "p",
+    parent: ".summary",
+    class1: "forecast-description",
+  },
   humidity: {
     nodeType: "p",
     parent: ".humidity-container",
@@ -272,10 +277,12 @@ const cardObjects = {
   forecastTime: {
     nodeType: "p",
     class1: "forecast-time",
+    class3: "time",
   },
   forecastTemp: {
    nodeType: "p",
    class1: "forecast-temp",
+   class3: "temperature",
   },
   forecastSummary: {
     nodeType: "p",
@@ -284,6 +291,10 @@ const cardObjects = {
   forecastHumidity: {
    nodeType: "p",
    class1: "forecast-humidity",
+  },
+  forecastCount: {
+    nodeType: "p",
+    class1: "forecast-count",
   },
 
 };

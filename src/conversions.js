@@ -34,6 +34,7 @@ const convertTime = (oldTime, unit) => {
     }
     return newTime;
   }
+  // time is in 24h notation
   const oldTimeSplit = oldTime.split(":");
   const char1 = oldTimeSplit[0].charAt(0);
   if (Number(char1) === 0) {
@@ -54,7 +55,8 @@ const convertTime = (oldTime, unit) => {
 
 const convertTimesFromUnix = (time, offset) => {
   // Takes unix time from Open Weather and returns a string with the remote
-  const timeOffset = time + offset; // time (i.e. the place we're getting weather for) in human-readable format
+  // time (i.e. the place we're getting weather for) in human-readable format
+  const timeOffset = time + offset;
   const timeConverted = timeOffset * 1000;
   const d = new Date(timeConverted);
   const dString = JSON.stringify(d);
