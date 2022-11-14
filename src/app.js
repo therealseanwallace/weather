@@ -1,8 +1,6 @@
 import { obtainWeather } from "./obtainWeather";
 import { convertFromKelvin, convertTimesFromUnix } from "./conversions";
-
-
-
+import crsMin from "./crs.min";
 
 const convertWind = (deg) => {
   // Takes wind direction as degrees and returns a human-readable string
@@ -46,17 +44,16 @@ const convertWind = (deg) => {
 const weatherFactory = (weather) => {
   // Takes the object received from Open Weather's API and returns a weather object containing
   // only the weather data we will use in this app
-  console.log('weatherFactory! weather is', weather);
-  const placeName = weather.name; 
+  const placeName = weather.name;
   const { country, sunrise, sunset } = weather.sys;
   const clouds = weather.clouds.all;
-  const { humidity, pressure, temp } = weather.main;
+  const { humidity, pressure } = weather.main;
   const { id } = weather.weather[0];
   const { dt, forecast } = weather;
-  const feelsLike = convertFromKelvin(weather["main"]["feels_like"]);
-  const tempMin = convertFromKelvin(weather["main"]["temp_min"]);
-  const tempMax = convertFromKelvin(weather["main"]["temp_max"]);
-  const airTemp = convertFromKelvin(weather["main"]["temp"]);
+  const feelsLike = convertFromKelvin(weather.main["feels_like"]);
+  const tempMin = convertFromKelvin(weather.main["temp_min"]);
+  const tempMax = convertFromKelvin(weather.main["temp_max"]);
+  const airTemp = convertFromKelvin(weather.main["temp"]);
   const offset = weather.timezone;
   const sunriseTime = convertTimesFromUnix(sunrise, offset);
   const sunsetTime = convertTimesFromUnix(sunset, offset);

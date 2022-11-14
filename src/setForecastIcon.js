@@ -1,7 +1,6 @@
 import CloudAlert from "./images/cloud-alert.svg";
 import Cloud from "./images/cloud.svg";
 import Fog from "./images/fog.svg";
-
 import Rain from "./images/rain.svg";
 import Sleet from "./images/sleet.svg";
 import Snow from "./images/snow.svg";
@@ -9,13 +8,10 @@ import Storm from "./images/storm.svg";
 import Sun from "./images/sun.svg";
 import Dust from "./images/weather-dust.svg";
 import Wind from "./images/weather-windy.svg";
-import Thermometer from "./images/thermometer.svg";
-import { getDescription } from "./getDescription";
 
 const setForecastIcon = (forecast, i) => {
-  console.log('setForecastIcon! forecast, i are', forecast, i );
   const icon = document.querySelector(`.forecast-icon${i}`);
-  console.log('ICON IS', icon);
+  let weather;
   switch (forecast) {
     case 200:
       icon.style.backgroundImage = `url('${Storm}')`;
@@ -176,70 +172,10 @@ const setForecastIcon = (forecast, i) => {
     case 803:
       icon.style.backgroundImage = `url('${Cloud}')`;
       break;
-    case 804:
+    default:
       icon.style.backgroundImage = `url('${Cloud}')`;
       break;
-    default:
-      weather = "Error! Couldn't find weather code.";
-      img = "Clear";
   }
-  //icon.style.backgroundImage = 
-  /*
-  let imgStr;
-  switch (img) {
-    case "Ash":
-      imgStr = `url('${Ash}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Clear":
-      imgStr = `url('${Clear}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Clouds":
-      imgStr = `url('${Clouds}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Dust":
-      imgStr = `url('${Dust}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Fog":
-      imgStr = `url('${Fog}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Haze":
-      imgStr = `url('${Haze}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "LClouds":
-      imgStr = `url('${LClouds}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Rain":
-      imgStr = `url('${Rain}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Smoke":
-      imgStr = `url('${Smoke}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Storm":
-      imgStr = `url('${Storm}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Snow":
-      imgStr = `url('${Snow}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    case "Wind":
-      imgStr = `url('${Wind}')`;
-      card.style.backgroundImage = imgStr;
-      break;
-    default:
-      imgStr = `url('${Clear}')`;
-      card.style.backgroundImage = imgStr;
-  }
-  */
 };
 
 export { setForecastIcon };

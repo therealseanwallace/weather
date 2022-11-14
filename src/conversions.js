@@ -140,5 +140,5 @@ export {
   convertVis,
   convertWind,
   convertFromKelvin,
-  convertTimesFromUnix
+  convertTimesFromUnix,
 };

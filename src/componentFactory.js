@@ -44,20 +44,19 @@ const componentFactory = (element) => {
       newDOMNode.textContent = text;
     }
     if (dataAttr) {
-      newDOMNode.setAttribute('data-region-id', 'USA');
+      newDOMNode.setAttribute("data-region-id", "USA");
     }
     if (shortcode) {
-      newDOMNode.setAttribute('data-value', 'shortcode');
+      newDOMNode.setAttribute("data-value", "shortcode");
     }
     if (id) {
       newDOMNode.id = id;
     }
     if (preferred) {
-      newDOMNode.setAttribute('data-preferred', preferred);
-      newDOMNode.setAttribute('data-preferred-delim', '-----');
+      newDOMNode.setAttribute("data-preferred", preferred);
+      newDOMNode.setAttribute("data-preferred-delim", "-----");
     }
     parentNode.append(newDOMNode);
-    
   };
   createDOMNode();
 
