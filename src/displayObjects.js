@@ -296,7 +296,10 @@ const cardObjects = {
     nodeType: "p",
     class1: "forecast-count",
   },
-
+  forecastIcon: {
+    nodeType: "div",
+    class1: "forecast-icon",
+  }
 };
 
 const errors = {

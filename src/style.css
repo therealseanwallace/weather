@@ -112,6 +112,7 @@ h6 {
 .feels-container {
   display: flex;
   gap: 10px;
+  align-items: flex-end;
 }
 
 .temp-container > p {
@@ -196,4 +197,14 @@ h6 {
   background-color: rgba(73, 73, 73, 0.85);
   border-radius: 10px;
   padding: 20px;
+}
+
+.forecast-icon {
+  height: 50px;
+  width: 50px;
+  filter: invert(95%);
+}
+
+.forecast-description {
+  font-size: 22px;
 }

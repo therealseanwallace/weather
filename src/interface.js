@@ -4,6 +4,7 @@ import { getDescription } from "./getDescription";
 import { drawCard } from "./drawCard";
 import { componentFactory } from "./componentFactory";
 import { setBackground } from "./setBackground";
+import { setForecastIcon } from "./setForecastIcon";
 import {
   roundTemp,
   convertTimes,
@@ -49,25 +50,28 @@ const toggleUnits = () => {
   }
 };
 
-const trimDateTime = (dateTime) => {
-  
-}
 const populateForecastCard = (forecast, i, offset) => {
-  console.log("populateForecastCard! forecast, i, offset is", forecast, i, offset);
+  console.log(
+    "populateForecastCard! forecast, i, offset is",
+    forecast,
+    i,
+    offset
+  );
   const forecastSummary = document.querySelector(`.forecast-summary${i}`);
   const forecastTemp = document.querySelector(`.forecast-temp${i}`);
   const forecastHumidity = document.querySelector(`.forecast-humidity${i}`);
   const forecastTime = document.querySelector(`.forecast-time${i}`);
   const forecastCount = document.querySelector(`.forecast-count${i}`);
+  setForecastIcon(forecast.weather[0].id, i);
   forecastSummary.textContent = forecast.weather[0].main;
-  forecastTemp.textContent = convertFromKelvin(forecast.main.temp);
-  forecastHumidity.textContent = forecast.main.humidity;
+  forecastTemp.textContent = `Temp: ${convertFromKelvin(forecast.main.temp)}`;
+  forecastHumidity.textContent = `Humidity: ${forecast.main.humidity} %`;
   const { dt } = forecast;
   const forecastTime24h = convertTimesFromUnix(dt, offset);
   forecastTime.textContent = forecastTime24h;
   if (i === 0) {
-    console.log('forecastCount is', forecastCount);
-    forecastCount.textContent = 'First forecast';
+    console.log("forecastCount is", forecastCount);
+    forecastCount.textContent = "First forecast";
   } else {
     let hours = i * 3;
     if (hours < 24) {
@@ -75,16 +79,12 @@ const populateForecastCard = (forecast, i, offset) => {
     } else {
       let days = hours / 24;
       //const remainder = 24 % hours;
-      console.log('days is', days);
+      console.log("days is", days);
       //console.log('remainder is', remainder);
       const daysRemainder = days % 1;
       const daysRounded = days - daysRemainder;
-      console.log('daysRounded is', daysRounded);
       forecastCount.textContent = `+ ${daysRounded} days`;
     }
-    
-    console.log('hours is', hours);
-
   }
 };
 
@@ -98,6 +98,7 @@ const drawForecastCard = (forecast, i, offset) => {
     tempContainer,
     tempUnits,
     forecastCount,
+    forecastIcon,
   } = cardObjects;
   console.log("drawForecastCard. forecast, i is", forecast, i);
   forecastCard.class2 = `forecast${i}`;
@@ -113,9 +114,12 @@ const drawForecastCard = (forecast, i, offset) => {
   tempUnits.class2 = `forecast-temp-units${i}`;
   tempUnits.parent = `.forecast-temp-container${i}`;
   tempContainer.parent = `.forecast${i}`;
-  tempContainer.class2  = `forecast-temp-container${i}`;
+  tempContainer.class2 = `forecast-temp-container${i}`;
   forecastCount.parent = `.forecast${i}`;
-  forecastCount.class2  = `forecast-count${i}`;
+  forecastCount.class2 = `forecast-count${i}`;
+  forecastIcon.parent = `.forecast${i}`;
+  forecastIcon.class2 = `forecast-icon${i}`;
+  componentFactory(forecastIcon);
   componentFactory(forecastDescription);
   componentFactory(tempContainer);
   componentFactory(forecastTemp);
