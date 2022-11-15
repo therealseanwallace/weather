@@ -299,7 +299,12 @@ const cardObjects = {
   forecastIcon: {
     nodeType: "div",
     class1: "forecast-icon",
-  }
+  },
+  tempLabel: {
+    nodetype: "p",
+    class1: "temp-label",
+    text: "Temp:",
+  },
 };
 
 const errors = {

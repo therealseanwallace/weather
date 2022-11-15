@@ -12,7 +12,7 @@ module.exports = {
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "The Odin Project - Weather App",
+      title: "Weather App",
     }),
   ],
   module: {

@@ -11,7 +11,7 @@ const populateForecastCard = (forecast, i, offset) => {
   const forecastCount = document.querySelector(`.forecast-count${i}`);
   setForecastIcon(forecast.weather[0].id, i);
   forecastSummary.textContent = forecast.weather[0].main;
-  forecastTemp.textContent = `Temp: ${convertFromKelvin(forecast.main.temp)}`;
+  forecastTemp.textContent = convertFromKelvin(forecast.main.temp);
   forecastHumidity.textContent = `Humidity: ${forecast.main.humidity} %`;
   const { dt } = forecast;
   const forecastTime24h = convertTimesFromUnix(dt, offset);
@@ -42,6 +42,7 @@ const drawForecastCard = (forecast, i, offset) => {
     tempUnits,
     forecastCount,
     forecastIcon,
+    tempLabel,
   } = cardObjects;
   forecastCard.class2 = `forecast${i}`;
   componentFactory(forecastCard);
@@ -61,11 +62,13 @@ const drawForecastCard = (forecast, i, offset) => {
   forecastCount.class2 = `forecast-count${i}`;
   forecastIcon.parent = `.forecast${i}`;
   forecastIcon.class2 = `forecast-icon${i}`;
+  tempLabel.parent = `.forecast-temp-container${i}`;
   componentFactory(forecastIcon);
   componentFactory(forecastDescription);
   componentFactory(forecastTime);
   componentFactory(forecastCount);
   componentFactory(tempContainer);
+  componentFactory(tempLabel);
   componentFactory(forecastTemp);
   componentFactory(tempUnits);
   componentFactory(forecastHumidity);
