@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+
 module.exports = {
   mode: "production",
   entry: "./src/index.js",
@@ -11,7 +12,7 @@ module.exports = {
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Odin Weather App",
+      title: "The Odin Project - Weather App",
     }),
   ],
   module: {
