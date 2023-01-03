@@ -178,4 +178,6 @@ const setForecastIcon = (forecast, i) => {
   }
 };
 
+
+
 export { setForecastIcon };
