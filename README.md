@@ -1,7 +1,9 @@
 # Weather app made in vanilla JS
 
 ## Description
-An assignment I did for The Odin Project. This one was pretty easy and fun, and really helped cement some important learnings (see below.)
+An assignment I did for The Odin Project. This one was pretty easy and fun, and really helped cement some important learnings (see below.) 
+
+Uses the openweather api to fetch and display weather for a location entered by the user.
 
 # [Live](https://therealseanwallace.github.io/weather/)
     
